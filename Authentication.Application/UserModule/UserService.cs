@@ -6,7 +6,7 @@ namespace Authentication.Application.UserModule
 {
     public interface IUserService
     {
-        Task<UserModel> GetAll();
+        Task<IEnumerable<UserModel>> GetAll();
         Task<string> Create(UserModel user);
         Task<bool> Check(string email);
         Task<string> CheckIfIdExist(Guid id);
@@ -39,9 +39,21 @@ namespace Authentication.Application.UserModule
             return string.Empty;
         }
 
-        public Task<UserModel> GetAll()
+        public async Task<IEnumerable<UserModel>> GetAll()
         {
-            throw new NotImplementedException();
+           var users = await _userRepository.GetAll();
+           var usersModel = new List<UserModel>();
+            foreach (var user in users)
+            {
+                usersModel.Add(new UserModel()
+                {
+                    Email = user.Email,
+                    Id = user.Id,
+                    Role = user.Role,
+                    UserName = user.UserName,
+                });
+            }
+            return usersModel;                
         }
 
         public async Task<string> Create(UserModel user)

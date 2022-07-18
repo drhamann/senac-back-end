@@ -1,5 +1,7 @@
 ﻿using Authentication.Domain.Repositories;
 using Authentication.Infra;
+using Authentication.Infrastructure.Respositorie;
+using System.Text;
 
 namespace Authentication.Infrastructure.Extension
 {
@@ -7,9 +9,13 @@ namespace Authentication.Infrastructure.Extension
     {
         public static void AddInfraExtensions(this IServiceCollection services, IConfiguration configuration )
         {
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.Configure<Settings>(configuration.GetSection("Settings"));
-
+            services.AddMemoryCache();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<IUserRepository, UserRepositoryInMemory>();
+            services.Configure<Settings>(configuration.GetSection("Settings"));           
+            services.Configure<ConnectionStrings>(configuration.GetSection("ConnectionStrings"));           
         }
     }
 }
+
+

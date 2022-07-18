@@ -1,5 +1,7 @@
+using Authentication.Application.Extensions;
 using Authentication.Extensions;
 using Authentication.Infra;
+using Authentication.Infrastructure;
 using Authentication.Infrastructure.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -7,6 +9,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
+var connectionStrings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
 var key = Encoding.ASCII.GetBytes(settings.Secret);
 
 // Add services to the container.
@@ -30,6 +33,7 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwagger();
 builder.Services.AddInfraExtensions(builder.Configuration);
+builder.Services.AddApplicationExtensions();
 
 var app = builder.Build();
 

@@ -1,10 +1,17 @@
 ﻿using Authentication.Domain.Entities;
 using Authentication.Domain.Repositories;
+using Microsoft.Extensions.Options;
 
 namespace Authentication.Infra
 {
     public class UserRepository : IUserRepository
     {
+        private string ConnectionString { get; set; }
+        public UserRepository(IOptions<Settings> settings)
+        {
+            ConnectionString = settings.Value.ConnectionString;
+        }
+
         private static List<User> _users { get; set; }
 
         public List<User> Users
@@ -20,10 +27,6 @@ namespace Authentication.Infra
                 }
                 return _users;
             }
-        }
-
-        public UserRepository()
-        {
         }
         public async Task<User> Get(string email, string password)
         {

@@ -16,6 +16,7 @@ namespace Authentication.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(UserModel[]),200)]
         public async Task<IActionResult> GetAllAsync()
         {
             var users = await _userService.GetAll();
