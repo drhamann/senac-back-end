@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.v2
+*.v1
+*.suo
+*.dll
+/Authentication.Infrastructure/obj
+/obj
+*.pdb
+*.json
