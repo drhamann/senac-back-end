@@ -1,6 +1,5 @@
-﻿using Authentication.Application.Services;
-using Authentication.Domain.Entities;
-using Authentication.Infra;
+﻿using Authentication.Application.AuthenticationModule;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,36 +10,26 @@ namespace Authentication.Controllers
     [Authorize]
     public class AutenticadorController : ControllerBase
     {
-        //private IUserRepository _userRepository { get;  }
+        private readonly Application.AuthenticationModule.IAuthenticationService _authenticationService;
 
-        /*public AutenticadorController(IUserRepository userRepository)
+        public AutenticadorController(Application.AuthenticationModule.IAuthenticationService authenticationService)
         {
-            this._userRepository = userRepository;
+            _authenticationService = authenticationService;
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
-        public async Task<IActionResult> Authenticate(UserLoginRequest model)
+        public async Task<IActionResult> Authenticate(AuthenticateModel model)
         {
             // Recupera o usuário
-            var user = await _userRepository.Get(model.Email, model.Password);
+            var token = await _authenticationService.AuthenticateAsync(model);
 
             // Verifica se o usuário existe
-            if (user == null)
+            if (token == string.Empty)
                 return BadRequest(new { message = "Usuário ou senha inválidos" });
 
-            // Gera o Token
-            var token = TokenService.GenerateToken(user);
-            // Retorna os dados
             return Ok(token);
-        }*/
+        }
     }
-
-    public class UserLoginRequest
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-
 }

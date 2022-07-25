@@ -12,6 +12,7 @@ namespace Authentication.Infrastructure.Extension
             services.AddMemoryCache();
             services.AddScoped<UserRepository>();
             services.AddScoped<IUserRepository, UserRepositoryInMemory>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.Configure<Settings>(configuration.GetSection("Settings"));           
             services.Configure<ConnectionStrings>(configuration.GetSection("ConnectionStrings"));           
         }

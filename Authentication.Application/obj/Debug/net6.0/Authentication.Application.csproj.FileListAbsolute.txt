@@ -34,3 +34,5 @@ E:\sourceCode\senac\Girhub\senac-back-end\Authentication.Application\obj\Debug\n
 E:\sourceCode\senac\Girhub\senac-back-end\Authentication.Application\obj\Debug\net6.0\refint\Authentication.Application.dll
 E:\sourceCode\senac\Girhub\senac-back-end\Authentication.Application\obj\Debug\net6.0\Authentication.Application.pdb
 E:\sourceCode\senac\Girhub\senac-back-end\Authentication.Application\obj\Debug\net6.0\ref\Authentication.Application.dll
+E:\sourceCode\senac\Girhub\senac-back-end\Authentication.Application\bin\Debug\net6.0\Authentication.Infrastructure.dll
+E:\sourceCode\senac\Girhub\senac-back-end\Authentication.Application\bin\Debug\net6.0\Authentication.Infrastructure.pdb
