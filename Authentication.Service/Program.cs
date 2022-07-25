@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+// builder.Host.UseWindowsService();
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
 var connectionStrings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
 var key = Encoding.ASCII.GetBytes(settings.Secret);
