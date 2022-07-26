@@ -10,19 +10,26 @@ namespace Authentication.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
+        private ILogger<UsersController> _logger;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, ILogger<UsersController> logger)
         {
             this._userService = userService;
+            _logger = logger;
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(UserModel[]),200)]
         public async Task<IActionResult> GetAllAsync()
         {
+            _logger.LogInformation("Retornando usuarios");
             var users = await _userService.GetAll();
-            if(users != null)
+            if (users != null)
+            {
+                _logger.LogDebug($"Usuarios", users);
                 return Ok(users);
+            }
+            _logger.LogWarning("Falha ao retornar usuarios");
             return BadRequest();
         }
 

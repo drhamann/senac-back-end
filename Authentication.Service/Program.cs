@@ -6,12 +6,19 @@ using Authentication.Infrastructure.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using NLog;
+using NLog.Web;
+
+var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+logger.Debug("init main");
 
 var builder = WebApplication.CreateBuilder(args);
 // builder.Host.UseWindowsService();
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
 var connectionStrings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
 var key = Encoding.ASCII.GetBytes(settings.Secret);
+
+builder.Host.UseNLog();
 
 // Add services to the container.
 builder.Services.AddAuthentication(x =>
@@ -35,6 +42,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSwagger();
 builder.Services.AddInfraExtensions(builder.Configuration);
 builder.Services.AddApplicationExtensions();
+builder.Services.AddLogging( configure =>
+{
+    configure.AddConsole();
+});
 
 var app = builder.Build();
 

@@ -16,10 +16,13 @@ namespace Authentication.Application.UserModule
     }
     public class UserService : IUserService
     {
-        public IUserRepository _userRepository { get; }
-        public UserService(IUserRepository userRepository)
+        private IUserRepository _userRepository { get; }
+        private ILogger<UserService> _logger { get; }
+        public UserService(IUserRepository userRepository,
+            ILogger<UserService> logger)
         {
             _userRepository = userRepository;
+            _logger = logger;
         }
 
         private async Task<string> ValidateUserData(UserModel userCreateRequest)
