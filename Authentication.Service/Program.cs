@@ -13,7 +13,7 @@ var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentCla
 logger.Debug("init main");
 
 var builder = WebApplication.CreateBuilder(args);
-// builder.Host.UseWindowsService();
+builder.Host.UseWindowsService();
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
 var connectionStrings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
 var key = Encoding.ASCII.GetBytes(settings.Secret);

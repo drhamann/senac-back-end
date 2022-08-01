@@ -10,3 +10,9 @@
 /obj
 *.pdb
 *.json
+
+*.cache
+
+Authentication.Domain/obj/
+
+.vs/Authentication/v17/fileList.bin
