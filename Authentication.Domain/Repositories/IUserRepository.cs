@@ -4,8 +4,6 @@ namespace Authentication.Domain.Repositories
 {
     public interface IUserRepository
     {
-        List<User> Users { get; }
-
         Task<User> Get(string email, string password);
         Task<bool> Check(string email);
         Task<string> CheckIfIdExist(Guid id);

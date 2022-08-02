@@ -16,7 +16,6 @@ namespace Authentication.Infrastructure.Respositorie
             _userRepository = userRepository;
             _memoryCache = memoryCache;
         }
-        public List<User> Users => _userRepository.Users;
 
         public Task<bool> Check(string email)
         {
