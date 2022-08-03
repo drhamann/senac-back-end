@@ -47,7 +47,7 @@ namespace Authentication.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(UserModel userUpdateRequest)
         {
-            string error = await _userService.ValidateUserData(userUpdateRequest);
+            string error = await _userService.Update(userUpdateRequest);
             if (String.IsNullOrEmpty(error))
             {
                 //UserModel user = _userService.UserMap(userUpdateRequest);
@@ -64,15 +64,11 @@ namespace Authentication.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            string error = await _userService.CheckIfIdExist(id);
+            string error = await _userService.Delete(id);
             if (String.IsNullOrEmpty(error))
             {
-                error = await _userService.Delete(id);
-                if (String.IsNullOrEmpty(error))
-                {
-                    return Ok();
-                }
-           }
+                return Ok();
+            }
             return BadRequest(error);
         }
     }

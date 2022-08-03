@@ -4,7 +4,7 @@ namespace Authentication.Application.ProductModule
 {
     public interface IProductService
     {
-
+        Task<IEnumerable<ProductModel>> GetAll();
     }
 
     public class ProductService : IProductService
@@ -16,7 +16,11 @@ namespace Authentication.Application.ProductModule
             _productRepository = productRepository;
         }
 
-
+        public async Task<IEnumerable<ProductModel>> GetAll()
+        {
+            //return await _productRepository.GetProductsAsync();
+            return null;
+        }
     }
 
 }

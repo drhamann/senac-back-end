@@ -1,5 +1,6 @@
 ﻿using Authentication.Application.AuthenticationModule;
 using Authentication.Application.UserModule;
+using FluentValidation;
 
 namespace Authentication.Application.Extensions
 {
@@ -9,8 +10,8 @@ namespace Authentication.Application.Extensions
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            // var authenticationService = new AuthenticationService()
-
+            services.AddValidatorsFromAssemblyContaining<UserModelValidator>(ServiceLifetime.Transient);
+            services.AddAutoMapper(typeof(UserModel));
         }
     }
 }

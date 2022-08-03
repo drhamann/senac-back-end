@@ -16,14 +16,10 @@ namespace Authentication.Service.Controllers
 
         // GET: api/<ProductController>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProducsModel>))]
-        public async IEnumerable<ProducsModel> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductModel>))]
+        public async Task<IEnumerable<ProductModel>> GetAllAsync()
         {
-            var products = await _productService.GetAll();
-            if (products == null)
-                return null;
-
-            return products;
+            return await _productService.GetAll();
         }
 
         // GET api/<ProductController>/5
@@ -31,11 +27,12 @@ namespace Authentication.Service.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductModel))]
         public ProductModel Get(int id)
         {
-            var product = _productService.Get(id);
+            /*var product = _productService.Get(id);
             if (product == null)
                 return null;
 
-            return product;
+            return product;*/
+            return new ProductModel();
         }
 
         // POST api/<ProductController>
