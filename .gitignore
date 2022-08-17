@@ -10,7 +10,7 @@
 /obj
 *.pdb
 *.json
-
+.vs
 *.cache
 
 Authentication.Domain/obj/
@@ -18,3 +18,9 @@ Authentication.Domain/obj/
 .vs/Authentication/v17/fileList.bin
 
 Authentication.Application/obj/
+
+.vs/Authentication/v17/
+
+Authentication.Tests/obj/Debug/net6.0/
+
+Authentication.Tests/
